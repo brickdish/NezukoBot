@@ -25,7 +25,6 @@ from pyrogram import filters
 
 from wbb import app, arq
 from wbb.core.decorators.errors import capture_err
-from wbb.utils.dbfunctions import get_nsfw_status
 
 __MODULE__ = "Reddit"
 __HELP__ = "/reddit [query] - results something from reddit"
@@ -48,8 +47,7 @@ async def reddit(_, message):
     image = reddit.url
     link = reddit.postLink
     if nsfw:
-        if await get_nsfw_status(message.chat.id) == False:
-            return await m.edit("NSFW content is disabled in this chat! Enable it using /nsfw")        
+        return await m.edit("NSFW RESULTS COULD NOT BE SHOWN.")
     caption = f"""
 **Title:** `{title}`
 **Subreddit:** {sreddit}
